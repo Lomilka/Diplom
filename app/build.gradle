@@ -8,7 +8,8 @@ android {
     defaultConfig {
         applicationId "com.lomilka.n"
         minSdk 19
-        targetSdk 32
+        //noinspection EditedTargetSdkVersion
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
