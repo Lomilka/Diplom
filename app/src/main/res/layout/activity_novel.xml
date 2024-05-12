@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back10_mental_hospital"
+    android:padding="16dp"
+    tools:context=".NovelActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="395dp"
+        android:layout_height="850dp"
+        android:background="@color/background_30_1" />
+
+    <ImageView
+        android:id="@+id/characterImageView"
+        android:layout_width="341dp"
+        android:layout_height="407dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="16dp"
+        android:scaleType="fitEnd"
+        android:src="@drawable/spr_nurse" />
+
+    <TextView
+        android:id="@+id/characterNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/characterImageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-10dp"
+        android:background="@color/background_95_1"
+        android:text="Character Name"
+        android:textColor="@color/text1_1"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/dialogueTextView"
+        android:layout_width="395dp"
+        android:layout_height="71dp"
+        android:layout_below="@id/characterNameTextView"
+        android:layout_marginTop="73dp"
+        android:background="@color/background_95_1"
+        android:text="Dialogue Text"
+        android:textColor="@color/text2_1"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialogueTextView"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <!-- Add your content inside the LinearLayout here -->
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/button_background_1"
+            android:text="В меню"
+            android:textColor="@color/button_text_1" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/button_background_1"
+            android:text="Инфо"
+            android:textColor="@color/button_text_1" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/button_background_1"
+            android:text="Тема"
+            android:textColor="@color/button_text_1" />
+    </LinearLayout>
+
+</RelativeLayout>

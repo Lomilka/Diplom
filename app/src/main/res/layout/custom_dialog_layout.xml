@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/customDialodLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_Main_1"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/CustomDialogTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingBottom="8dp"
+        android:text="Выберите вариант:"
+        android:textColor="@color/text1_1"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/option1Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/button_background_1"
+        android:text="Объявить о своей победе"
+        android:textColor="@color/button_text_1" />
+
+    <Button
+        android:id="@+id/option2Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/button_background_1"
+        android:text="Поддаться"
+        android:textColor="@color/button_text_1" />
+
+</LinearLayout>

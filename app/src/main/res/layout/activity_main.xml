@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_Main_1"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/button_leaveAtTheGame"
+        android:layout_width="157dp"
+        android:layout_height="49dp"
+        android:background="@color/button_background_1"
+        android:onClick="exit"
+        android:text="Выйти из игры"
+        android:textColor="@color/button_text_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_play"
+        app:layout_constraintVertical_bias="0.578" />
+
+    <Button
+        android:id="@+id/button_play"
+        android:layout_width="256dp"
+        android:layout_height="97dp"
+        android:background="@color/button_background_1"
+        android:onClick="to_NovelActivity"
+        android:text="Играть"
+        android:textColor="@color/button_text_1"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_Lok1"
+        app:layout_constraintVertical_bias="0.177" />
+
+    <ImageView
+        android:id="@+id/imageView_Lok1"
+        android:layout_width="334dp"
+        android:layout_height="297dp"
+        android:contentDescription="TODO"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.44"
+        app:srcCompat="@drawable/lok111" />
+
+    <TextView
+        android:id="@+id/textView_ByLomilka"
+        android:layout_width="393dp"
+        android:layout_height="128dp"
+        android:gravity="center"
+        android:text="Какой будет жизнь твоего персонажа?"
+        android:textColor="@color/button_background_1"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView_Lok1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.516" />
+
+    <ImageView
+        android:id="@+id/imageView_Lok2"
+        android:layout_width="246dp"
+        android:layout_height="306dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.424"
+        app:srcCompat="@drawable/lok222" />
+
+</android.support.constraint.ConstraintLayout>

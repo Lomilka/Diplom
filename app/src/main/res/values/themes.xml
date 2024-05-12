@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.N" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/button_background_1</item>
+        <item name="colorPrimaryDark">@color/background_Main_1</item>
+        <item name="colorAccent">@color/button_text_1</item>
+        <!-- Customize your theme here. -->
+    </style>
+</resources>
