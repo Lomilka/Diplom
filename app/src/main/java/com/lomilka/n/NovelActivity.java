@@ -19,7 +19,6 @@ import java.util.ArrayList;
 public class NovelActivity extends BaseActivity {
 
     private GameLogic gameLogic;
-    private ArrayList<Dialogue> dialogues;
     private ImageView imageView;
     private RelativeLayout relativeLayout;
     private TextView characterNameTextView;
@@ -46,20 +45,28 @@ public class NovelActivity extends BaseActivity {
         button3 = findViewById(R.id.button3);
         setNovelTheme(imageView, characterNameTextView, dialogueTextView, button1,button2,button3);
 
-        // Инициализация игровой логики
-        dialogues = DialogLoader.loadDialogues();
-
-        //Объект, который хранит лист с диалогами. При создании currentDialogueIndex = 0
-        gameLogic = new GameLogic(dialogues);
+        //Создаём объект, который может управлять листом с диалогами. При создании currentDialogueIndex = 0
+        gameLogic = new GameLogic(DialogLoader.select(0));
+        gameLogic.setDialogues(DialogLoader.select(2)); //TODO Как будто предыдущий лист сначала перезаписывается на указанный в этой строке, а потом
+        //TODO                                              ещё и добавляет дополнительно то же самое. Потому что если перезапиать ещё раз, то лист не удвоится, а уже утроится и тд.
 
         // Загрузка первого диалога
-        loadNextDialogue();
+        loadNextDialogue(gameLogic);
 
         //Обработчик простого тыка по экрану
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadNextDialogue();
+                switch (GameLogic.razvilka) {
+                    case 1:
+                        loadNextDialogue(gameLogic); //TODO планировалось именно здесь в зависимости от выбора ставить нужный лист, но до этого этапа еще нужно дойти...
+                        break;
+                    case 2:
+                        loadNextDialogue(gameLogic);
+                        break;
+                    default:
+                        loadNextDialogue(gameLogic);
+                }
             }
         });
 
@@ -90,8 +97,9 @@ public class NovelActivity extends BaseActivity {
     }
 
     // Загрузка следующего диалога
-    private void loadNextDialogue() {
-        //Создаём ячейку Диалогового типа и помещаем в неё диалог с текущим индексом (индексом Dialogue.currentDialogueIndex)
+    private void loadNextDialogue(GameLogic gameLogic) {
+        System.out.println(gameLogic.dialogues.size()); //TODO Вот тут стало очевидно, что дело именно в размере листа. Всплывающее окно должно вызываться после цифры 5, фон психушка
+        //TODO                                              (то есть в конце листа). Окно всплывает как надо, в конце листа, но почему-то удвоенного.
         Dialogue currentDialogue = gameLogic.getNextDialogue();
         if (currentDialogue != null) {
             characterNameTextView.setText(currentDialogue.getCharacterName());
@@ -99,19 +107,13 @@ public class NovelActivity extends BaseActivity {
             characterImageView.setImageResource(currentDialogue.getImageResourceId());
             relativeLayout.setBackgroundResource(currentDialogue.getBackgroundResourceId());
         }
-        if (gameLogic.getCurrentDialogueIndex() == dialogues.size()) { //Если это последний диалог в листе, то:
-            //Toast.makeText(getApplicationContext(), "Это последний currentDialogue", Toast.LENGTH_SHORT).show();
+        if (gameLogic.getCurrentDialogueIndex() == gameLogic.sizee()) { //Если это последний диалог в листе, то:
             gameLogic.resetCurrentDialogueIndex();
             showCustomDialog();
         }
     }
 
-//    // Обработка выбора пользователя
-//    private void handleUserChoice(int choice) {
-//        loadNextDialogue(); // Загрузка следующего диалога
-//    }
-
-    // Метод для отображения кастомного диалога
+    // Метод для отображения всплывающего окна
     private void showCustomDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(""); // Установка пустого заголовка
@@ -129,6 +131,8 @@ public class NovelActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 // Обработка выбора варианта 1
+                GameLogic.razvilka = 1;
+                // Закрыть окно
                 if (dialog != null && dialog.isShowing()) {
                     dialog.dismiss();
                 }
@@ -139,6 +143,8 @@ public class NovelActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 // Обработка выбора варианта 2
+                GameLogic.razvilka = 2;
+                // Закрыть окно
                 if (dialog != null && dialog.isShowing()) {
                     dialog.dismiss();
                 }

@@ -4,10 +4,11 @@ package com.lomilka.n;
 import java.util.ArrayList;
 
 public class GameLogic {
-    private ArrayList<Dialogue> dialogues;
+    public ArrayList<Dialogue> dialogues;
     private int currentDialogueIndex;
     private Dialogue currentDialogue;
     public static int theme;
+    public static int razvilka = 0;
 
     //Конструктор. Объект будет хранить лист с диалогами из NovelActivity
     public GameLogic(ArrayList<Dialogue> dialogues) {
@@ -32,5 +33,14 @@ public class GameLogic {
     // Метод для сброса текущего индекса диалога на начальное значение
     public void resetCurrentDialogueIndex() {
         this.currentDialogueIndex = 0;
+    }
+
+    public int sizee(){
+        return dialogues.size();
+    }
+
+    public void setDialogues(ArrayList<Dialogue> newList) {
+        this.dialogues.clear();
+        this.dialogues = newList;
     }
 }
