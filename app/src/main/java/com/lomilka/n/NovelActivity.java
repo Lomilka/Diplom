@@ -47,8 +47,6 @@ public class NovelActivity extends BaseActivity {
 
         //Создаём объект, который может управлять листом с диалогами. При создании currentDialogueIndex = 0
         gameLogic = new GameLogic(DialogLoader.select(0));
-        gameLogic.setDialogues(DialogLoader.select(2)); //TODO Как будто предыдущий лист сначала перезаписывается на указанный в этой строке, а потом
-        //TODO                                              ещё и добавляет дополнительно то же самое. Потому что если перезапиать ещё раз, то лист не удвоится, а уже утроится и тд.
 
         // Загрузка первого диалога
         loadNextDialogue(gameLogic);
@@ -57,16 +55,8 @@ public class NovelActivity extends BaseActivity {
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (GameLogic.razvilka) {
-                    case 1:
-                        loadNextDialogue(gameLogic); //TODO планировалось именно здесь в зависимости от выбора ставить нужный лист, но до этого этапа еще нужно дойти...
-                        break;
-                    case 2:
-                        loadNextDialogue(gameLogic);
-                        break;
-                    default:
-                        loadNextDialogue(gameLogic);
-                }
+                //gameLogic.setDialogues(DialogLoader.select(GameLogic.forselect()));
+                loadNextDialogue(gameLogic);
             }
         });
 
@@ -98,8 +88,6 @@ public class NovelActivity extends BaseActivity {
 
     // Загрузка следующего диалога
     private void loadNextDialogue(GameLogic gameLogic) {
-        System.out.println(gameLogic.dialogues.size()); //TODO Вот тут стало очевидно, что дело именно в размере листа. Всплывающее окно должно вызываться после цифры 5, фон психушка
-        //TODO                                              (то есть в конце листа). Окно всплывает как надо, в конце листа, но почему-то удвоенного.
         Dialogue currentDialogue = gameLogic.getNextDialogue();
         if (currentDialogue != null) {
             characterNameTextView.setText(currentDialogue.getCharacterName());
@@ -110,6 +98,7 @@ public class NovelActivity extends BaseActivity {
         if (gameLogic.getCurrentDialogueIndex() == gameLogic.sizee()) { //Если это последний диалог в листе, то:
             gameLogic.resetCurrentDialogueIndex();
             showCustomDialog();
+            gameLogic.setDialogues(DialogLoader.select(GameLogic.forselect())); //TODO
         }
     }
 
@@ -127,11 +116,16 @@ public class NovelActivity extends BaseActivity {
         Button option2Button = dialogView.findViewById(R.id.option2Button);
         setCustomDialogLayoutTheme(customDialodLayout, CustomDialogTextView, option1Button, option2Button);
 
+        // Получение текста кнопок из класса GameLogic
+        option1Button.setText(GameLogic.option1Text);
+        option2Button.setText(GameLogic.option2Text);
+
         option1Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Обработка выбора варианта 1
                 GameLogic.razvilka = 1;
+                GameLogic.sujet++;
                 // Закрыть окно
                 if (dialog != null && dialog.isShowing()) {
                     dialog.dismiss();
@@ -144,6 +138,7 @@ public class NovelActivity extends BaseActivity {
             public void onClick(View v) {
                 // Обработка выбора варианта 2
                 GameLogic.razvilka = 2;
+                GameLogic.sujet++;
                 // Закрыть окно
                 if (dialog != null && dialog.isShowing()) {
                     dialog.dismiss();

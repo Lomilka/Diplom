@@ -6,9 +6,11 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainActivity extends BaseActivity {
@@ -31,6 +33,26 @@ public class MainActivity extends BaseActivity {
         button_leaveAtTheGame = findViewById(R.id.button_leaveAtTheGame);
 
         setMainTheme(constraintLayout, textView_ByLomilka, button_play, button_leaveAtTheGame);
+        showAgeVerificationDialog();
+    }
+    // Подтверждение возраста
+    private void showAgeVerificationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Внимание!")
+                .setMessage("Эта игра предназначена для лиц старше 18 лет")
+                .setCancelable(false)
+                .setPositiveButton("Мне есть 18 лет", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton("Мне меньше 18 лет", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     @Override
