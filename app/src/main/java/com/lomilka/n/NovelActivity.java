@@ -46,7 +46,7 @@ public class NovelActivity extends BaseActivity {
         setNovelTheme(imageView, characterNameTextView, dialogueTextView, button1,button2,button3);
 
         //Создаём объект, который может управлять листом с диалогами. При создании currentDialogueIndex = 0
-        gameLogic = new GameLogic(DialogLoader.select(0));
+        gameLogic = new GameLogic(DialogLoader.select("0"));
 
         // Загрузка первого диалога
         loadNextDialogue(gameLogic);
@@ -55,7 +55,6 @@ public class NovelActivity extends BaseActivity {
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //gameLogic.setDialogues(DialogLoader.select(GameLogic.forselect()));
                 loadNextDialogue(gameLogic);
             }
         });
